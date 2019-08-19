@@ -28,7 +28,7 @@ Select "No" for One Qualification and Submit Application
 View Application in Application Listing Page
 
 */
-WebUI.callTestCase(findTestCase('Page_Login'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
@@ -103,7 +103,7 @@ WebUI.click(findTestObject('Page_Application Confirmation/button_viewApplication
 
 TestObject status = findTestObject('Object Repository/Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Awards Applications/span_Pending Payment')
 
-def paymentstatus= WebUI.getText(status, FailureHandling.STOP_ON_FAILURE)
+def paymentstatus = WebUI.getText(status, FailureHandling.STOP_ON_FAILURE)
 
 System.out.println('Payment status is:' + paymentstatus)
 

@@ -21,10 +21,13 @@ WebUI.maximizeWindow()
 
 WebUI.delay(2)
 
-WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'), findTestData('LoginPage/LoginPage').getValue(
+not_run: WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'), findTestData('LoginPage/LoginPage').getValue(
         'NRIC', 1))
 
-WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), findTestData('LoginPage/LoginPage').getValue(
+not_run: WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), findTestData('LoginPage/LoginPage').getValue(
+        'SOURCE', 1))
+
+CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('NRIC', 1), findTestData('LoginPage/LoginPage').getValue(
         'SOURCE', 1))
 
 WebUI.verifyMatch('SFQA', 'SFQA', false, FailureHandling.STOP_ON_FAILURE)

@@ -18,7 +18,7 @@ import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory as Mobil
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import org.openqa.selenium.WebElement as WebElement
 
-WebUI.callTestCase(findTestCase('Page_Login'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
@@ -34,24 +34,22 @@ List<WebElement> Rows = table.findElements(By.tagName('tr'))
 int row_count = Rows.size()
 
 //System.out.println('No of rows are:' + row_count)
+System.out.println(('Contains' + row_count) + 'row')
 
-    System.out.println(('Contains' + row_count) + 'row')
+System.out.println('Contains valid single row')
 
-    System.out.println('Contains valid single row')
+WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row1_NO'))
 
-    WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row1_NO'))
+WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row2_NO'))
 
-    WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row2_NO'))
+WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row3_YES'))
 
-    WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row3_YES'))
+WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row4_NO'))
 
-    WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row4_NO'))
+WebUI.delay(5)
 
-    WebUI.delay(5)
-
-    WebUI.scrollToElement(findTestObject('Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Qualification AwardsApplication/span_Total Award Amount'), 
-        2)
-
+WebUI.scrollToElement(findTestObject('Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Qualification AwardsApplication/span_Total Award Amount'), 
+    2)
 
 //Check if amount is displayed when No is selected
 TestObject verifyAmount = findTestObject('Object Repository/Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Qualification AwardsApplication/span_Total Award Amount')

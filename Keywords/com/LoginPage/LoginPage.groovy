@@ -44,29 +44,12 @@ import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 
 class LoginPage {
 	@Keyword
-	def Login() {
-		WebUI.openBrowser('')
+	public static void Login(String username, String password) {
+		
 
-		WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
+		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'),username)
 
-		WebUI.maximizeWindow()
+		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), password)
 
-		WebUI.delay(2)
-
-		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'), findTestData('LoginPage/LoginPage').getValue(
-				'NRIC', 1))
-
-		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), findTestData('LoginPage/LoginPage').getValue(
-				'SOURCE', 1))
-
-		WebUI.click(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/button_login'))
-
-		WebUI.delay(5)
-
-		System.out.println(WebUI.getWindowTitle())
-
-		WebUI.verifyMatch('SkillsFuture Qualification Award', 'SkillsFuture Qualification Award', false, FailureHandling.STOP_ON_FAILURE)
-
-		WebUI.verifyTextPresent('SkillsFuture Qualification Award', false, FailureHandling.STOP_ON_FAILURE)
 	}
 }
