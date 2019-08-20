@@ -68,7 +68,7 @@ System.out.println('The actual amount is:' + ActualAmount)
 
 if (ActualAmount != '$0') {
     //if (WebUI.verifyMatch(ActualAmount, AwardAmount, false)) {
-    System.out.println('Congrats!!Value is changed!!!!!!!!!')
+    System.out.println('Award amount is changed!!!')
 } else {
     System.out.println('Value is not changed')
 }
