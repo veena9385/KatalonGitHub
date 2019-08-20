@@ -28,7 +28,8 @@ Select "No" for One Qualification and Submit Application
 View Application in Application Listing Page
 
 */
-WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
+CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('NRIC', 2), findTestData('LoginPage/LoginPage').getValue(
+        'SOURCE', 2))
 
 WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
