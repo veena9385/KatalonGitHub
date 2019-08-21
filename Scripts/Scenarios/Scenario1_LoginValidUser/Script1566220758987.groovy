@@ -13,32 +13,46 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
 WebUI.maximizeWindow()
 
-WebUI.delay(2)
+WebUI.delay(5)
 
-not_run: WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'), findTestData('LoginPage/LoginPage').getValue(
-        'NRIC', 1))
-
-not_run: WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), findTestData('LoginPage/LoginPage').getValue(
-        'SOURCE', 1))
-
-CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('NRIC', 1), findTestData('LoginPage/LoginPage').getValue(
-        'SOURCE', 1))
-
-WebUI.verifyMatch('SFQA', 'SFQA', false, FailureHandling.STOP_ON_FAILURE)
-
-WebUI.click(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/button_login'))
+WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/link_Login'))
 
 WebUI.delay(5)
 
-System.out.println(WebUI.getWindowTitle())
+if(WebUI.verifyElementPresent(findTestObject('Object Repository/Page_SingPass Login/div_QR CODE HASEXPIRED'), 4))
+{
 
-WebUI.verifyMatch('SkillsFuture Qualification Award', 'SkillsFuture Qualification Award', false, FailureHandling.STOP_ON_FAILURE)
+	System.out.println("scan QR code")
+	WebUI.click(findTestObject('Object Repository/Page_LoginPage/Link_SingPass'))
 
-WebUI.verifyTextPresent('SkillsFuture Qualification Award', false, FailureHandling.STOP_ON_FAILURE)
+	WebUI.delay(2)
 
+	CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('SingPassID', 1), findTestData(
+			'LoginPage/LoginPage').getValue('Password', 1))
+
+
+	WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/button_LoginSingPassID'))
+
+	WebUI.delay(5)
+
+	System.out.println(WebUI.getWindowTitle())
+}
+else
+{
+	CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('SingPassID', 1), findTestData(
+			'LoginPage/LoginPage').getValue('Password', 1))
+
+
+	WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/button_LoginSingPassID'))
+
+	WebUI.delay(5)
+
+	System.out.println(WebUI.getWindowTitle())
+}
