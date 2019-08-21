@@ -20,6 +20,9 @@ import org.openqa.selenium.WebElement as WebElement
 
 WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
 
+//CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('SingPassID', 1), findTestData(
+//        'LoginPage/LoginPage').getValue('Password', 1))
+
 WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
 WebUI.delay(8)
@@ -32,7 +35,10 @@ WebElement table = driver.findElement(By.xpath('//table/tbody'))
 List<WebElement> Rows = table.findElements(By.tagName('tr'))
 
 int row_count = Rows.size()
-
+if (row_count == 1) {
+	System.out.println('Contains one row',FailureHandling.STOP_ON_FAILURE)
+	//WebUI.delay(2,FailureHandling.STOP_ON_FAILURE)
+} else {
 //System.out.println('No of rows are:' + row_count)
 System.out.println(('Contains' + row_count) + 'row')
 
@@ -102,3 +108,4 @@ System.out.println('Payment status is:' + paymentstatus)
 
 WebUI.takeScreenshot()
 
+}
