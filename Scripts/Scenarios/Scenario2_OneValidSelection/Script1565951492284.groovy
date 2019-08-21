@@ -30,11 +30,9 @@ View Application in Application Listing Page
 */
 WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
+WebUI.click(findTestObject('Object Repository/Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
-WebUI.delay(8)
-
-//Count row
+WebUI.delay(2)
 WebDriver driver = DriverFactory.getWebDriver()
 
 WebElement table = driver.findElement(By.xpath('//table/tbody'))
@@ -46,7 +44,8 @@ int row_count = Rows.size()
 System.out.println('No of rows are:' + row_count)
 
 if (row_count > 1) {
-    System.out.println('Contains more than one row')
+    System.out.println('Contains more than one row',FailureHandling.STOP_ON_FAILURE)
+	//WebUI.delay(2,FailureHandling.STOP_ON_FAILURE)
 } else {
     System.out.println('Contains valid single row')
 
@@ -67,7 +66,7 @@ System.out.println('The actual amount is:' + ActualAmount)
 
 if (ActualAmount != '$0') {
     //if (WebUI.verifyMatch(ActualAmount, AwardAmount, false)) {
-    System.out.println('Congrats!!Value is changed!!!!!!!!!')
+    System.out.println('Award amount is changed!!!')
 } else {
     System.out.println('Value is not changed')
 }
@@ -108,4 +107,6 @@ def paymentstatus = WebUI.getText(status, FailureHandling.STOP_ON_FAILURE)
 System.out.println('Payment status is:' + paymentstatus)
 
 WebUI.takeScreenshot()
+
+
 
