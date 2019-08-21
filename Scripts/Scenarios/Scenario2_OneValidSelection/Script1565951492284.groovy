@@ -108,5 +108,3 @@ System.out.println('Payment status is:' + paymentstatus)
 
 WebUI.takeScreenshot()
 
-
-
