@@ -28,14 +28,28 @@ Select "No" for One Qualification and Submit Application
 View Application in Application Listing Page
 
 */
-CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('NRIC', 2), findTestData('LoginPage/LoginPage').getValue(
-        'SOURCE', 2))
+/*WebUI.openBrowser('')
 
-WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
+WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
-WebUI.delay(8)
+WebUI.maximizeWindow()
 
+WebUI.delay(5)
+
+WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/link_Login'))
+
+CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('SingPassID', 1), findTestData(
+        'LoginPage/LoginPage').getValue('Password', 1))
+
+WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/button_LoginSingPassID'))
+
+WebUI.delay(8) */
 //Count row
+WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.click(findTestObject('Object Repository/Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
+
+WebUI.delay(2)
 WebDriver driver = DriverFactory.getWebDriver()
 
 WebElement table = driver.findElement(By.xpath('//table/tbody'))
@@ -47,7 +61,8 @@ int row_count = Rows.size()
 System.out.println('No of rows are:' + row_count)
 
 if (row_count > 1) {
-    System.out.println('Contains more than one row')
+    System.out.println('Contains more than one row',FailureHandling.STOP_ON_FAILURE)
+	//WebUI.delay(2,FailureHandling.STOP_ON_FAILURE)
 } else {
     System.out.println('Contains valid single row')
 
