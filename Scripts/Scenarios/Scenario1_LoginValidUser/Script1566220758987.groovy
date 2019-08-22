@@ -19,7 +19,7 @@ WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
 WebUI.maximizeWindow()
 
-WebUI.delay(5)
+WebUI.delay(4)
 
 WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/link_Login'))
 

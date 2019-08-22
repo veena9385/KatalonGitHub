@@ -46,13 +46,13 @@ class LoginPage {
 	@Keyword
 	public static void Login(String username, String password) {
 
-	//	WebUI.openBrowser('')
+		//	WebUI.openBrowser('')
 
-	//	WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
+		//	WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
-	//	WebUI.maximizeWindow()
+		//	WebUI.maximizeWindow()
 
-	//	WebUI.delay(2)
+		//	WebUI.delay(2)
 
 		WebUI.setText(findTestObject('Object Repository/Page_LoginPage/Page_SingPass Login/input_SingPass ID_loginID'),username)
 

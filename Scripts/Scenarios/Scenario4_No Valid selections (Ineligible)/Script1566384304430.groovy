@@ -20,14 +20,10 @@ import org.openqa.selenium.WebElement as WebElement
 
 WebUI.callTestCase(findTestCase('Scenarios/Scenario1_LoginValidUser'), [:], FailureHandling.STOP_ON_FAILURE)
 
-//CustomKeywords.'com.LoginPage.LoginPage.Login'(findTestData('LoginPage/LoginPage').getValue('SingPassID', 1), findTestData(
-//        'LoginPage/LoginPage').getValue('Password', 1))
+WebUI.click(findTestObject('Object Repository/Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
 
-WebUI.click(findTestObject('Page_MySkillsFuturePage/Page_SkillsFuture Qualification AwardsApplication/input_click here to apply'))
+WebUI.delay(2)
 
-WebUI.delay(8)
-
-//Count row
 WebDriver driver = DriverFactory.getWebDriver()
 
 WebElement table = driver.findElement(By.xpath('//table/tbody'))
@@ -35,22 +31,15 @@ WebElement table = driver.findElement(By.xpath('//table/tbody'))
 List<WebElement> Rows = table.findElements(By.tagName('tr'))
 
 int row_count = Rows.size()
-if (row_count == 1) {
-	System.out.println('Contains one row',FailureHandling.STOP_ON_FAILURE)
-	//WebUI.delay(2,FailureHandling.STOP_ON_FAILURE)
-} else {
-//System.out.println('No of rows are:' + row_count)
-System.out.println(('Contains' + row_count) + 'row')
 
-System.out.println('Contains valid single row')
+System.out.println('No of rows are:' + row_count)
 
-WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row1_NO'))
-
-WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row2_NO'))
-
-WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row3_YES'))
-
-WebUI.check(findTestObject('MultipleRadioButtons/Page_SkillsFuture Qualification AwardsApplication/radiobutton_row4_NO'))
+//WebDriver driver = DriverFactory.getWebDriver()
+//   WebElement RadioBtn_YES = WebUI.click(findTestObject('Object Repository/Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Qualification AwardsApplication/radiobutton_Yes'))
+for (def row = 1; row <= row_count; row++) {
+    //WebElement RadioBtn_YES = WebUI.click(findTestObject('Object Repository/Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Qualification AwardsApplication/radiobutton_Yes'))
+    driver.findElement(By.xpath(('(.//*[normalize-space(text()) and normalize-space(.)=\'Yes\'])[' + row) + ']/preceding::input[1]')).click()
+}
 
 WebUI.delay(5)
 
@@ -66,7 +55,7 @@ System.out.println('The actual amount is:' + ActualAmount)
 
 if (ActualAmount != '$0') {
     //if (WebUI.verifyMatch(ActualAmount, AwardAmount, false)) {
-    System.out.println('Congrats!!Value is changed!!!!!!!!!')
+    System.out.println('Award amount is changed!!!')
 } else {
     System.out.println('Value is not changed')
 }
@@ -100,12 +89,43 @@ System.out.println('Your Application is Submitted!')
 
 WebUI.click(findTestObject('Page_Application Confirmation/button_viewApplication'))
 
-TestObject status = findTestObject('Object Repository/Page_SkillsFuture Qualification AwardsApplication/Page_SkillsFuture Awards Applications/span_Pending Payment')
-
-def paymentstatus = WebUI.getText(status, FailureHandling.STOP_ON_FAILURE)
-
-System.out.println('Payment status is:' + paymentstatus)
-
 WebUI.takeScreenshot()
 
-}
+WebUI.openBrowser('')
+
+WebUI.navigateToUrl(findTestData('AdminPage/AdminPage').getValue('url', 1))
+
+WebUI.maximizeWindow()
+
+WebUI.delay(3)
+
+CustomKeywords.'com.AdminPage.AdminPage.Login'(findTestData('AdminPage/AdminPage').getValue('username', 1))
+
+not_run: WebUI.click(findTestObject('Page_AdminMockLogin/input_INTRA2 AD SSO Login'))
+
+not_run: WebUI.delay(10)
+
+not_run: WebUI.setText(findTestObject('Page_AdminMockLogin/input_INTRA2 AD Username'), 'SSGACTABCDE')
+
+WebUI.click(findTestObject('Page_AdminMockLogin/input_AdminLogin'))
+
+WebUI.delay(2)
+
+WebUI.click(findTestObject('Page_Admin-SelectRole/button_FinanceOfficer'))
+
+WebUI.scrollToElement(findTestObject('Page_Admin-Dashboard/Page_Admin-Dashboard/span_NRIC_Application'), 0)
+
+TestObject NRIC = findTestObject('Object Repository/Page_Admin-Dashboard/Page_Admin-Dashboard/span_NRIC_Application')
+
+def NRIC_NO = WebUI.getText(NRIC)
+
+System.out.println('NRIC is:' + NRIC_NO)
+
+TestObject App_status = findTestObject('Object Repository/Page_Admin-Dashboard/Page_Admin-Dashboard/span_Status_Ineligible')
+
+def ApplicationStatus = WebUI.getText(App_status)
+
+System.out.println('Application status is:' + ApplicationStatus)
+
+WebUI.verifyTextPresent('Ineligible', false, FailureHandling.STOP_ON_FAILURE)
+
