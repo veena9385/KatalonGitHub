@@ -13,13 +13,18 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
 WebUI.maximizeWindow()
 
+
 WebUI.delay(4)
+
+WebUI.delay(5)
+
 
 WebUI.click(findTestObject('Page_LoginPage/Page_SingPass Login/link_Login'))
 

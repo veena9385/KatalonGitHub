@@ -45,17 +45,16 @@ import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 class LoginPage {
 	@Keyword
 	public static void Login(String username, String password) {
+		WebUI.openBrowser('')
 
-		//	WebUI.openBrowser('')
+		WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
 
-		//	WebUI.navigateToUrl(findTestData('LoginPage/LoginPage').getValue('URL', 1))
+		WebUI.maximizeWindow()
 
-		//	WebUI.maximizeWindow()
+		WebUI.delay(2)
 
-		//	WebUI.delay(2)
+		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_NRIC'),username)
 
-		WebUI.setText(findTestObject('Object Repository/Page_LoginPage/Page_SingPass Login/input_SingPass ID_loginID'),username)
-
-		WebUI.setText(findTestObject('Object Repository/Page_LoginPage/Page_SingPass Login/input_Password_password'), password)
+		WebUI.setText(findTestObject('Page_LoginPage/Page_ApplicantMockScreen/input_SOURCE'), password)
 	}
 }
