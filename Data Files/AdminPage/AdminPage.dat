@@ -6,8 +6,9 @@
    <containsHeaders>true</containsHeaders>
    <csvSeperator></csvSeperator>
    <dataFileGUID>1afa4736-1f4b-4e7b-909f-17e5e6f5c8fd</dataFileGUID>
+
    <dataSourceUrl>C:\Users\akshada.shetty\Katalon Studio\SFQA_Project\AdminPage.xlsx</dataSourceUrl>
-   <driver>ExcelFile</driver>
+  <driver>ExcelFile</driver>
    <isInternalPath>false</isInternalPath>
    <query></query>
    <secureUserAccount>false</secureUserAccount>
